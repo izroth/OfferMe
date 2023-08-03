@@ -53,10 +53,11 @@ try{
                 product_id: product.product_id,
                 userid: userid,
                
-                product_name: product.product_title,
+                product_title: product.product_title,
+                product_image: product.product_image,
                         store_name: product.offer.store_name,
                         store_rating: product.offer.store_rating,
-                        offerpageurl: product.offer.offerpageurl,
+                        offerpageurl: product.offer.offer_page_url,
                         store_review_count: product.offer.store_review_count,
                         store_reviews_page_url: product.offer.store_reviews_page_url,
                         price: product.offer.price,
@@ -77,7 +78,7 @@ try{
     if(!savedata){
         throw new Error('Data not saved.');
     }
-    res.status(200).json({ message: 'success', data: savedata });
+    res.status(200).json({ message: 'success', data: allOffers });
    
     
 
