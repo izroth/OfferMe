@@ -29,6 +29,7 @@ const EnterDetails = async (req, res) => {
         if(!data_response){
             throw data_response.data.message;
         }
+        console.log(data_response.data)
 
                
         res.status(200).json({message:'success',data:data_response.data});
