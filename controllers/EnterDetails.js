@@ -12,11 +12,11 @@ const EnterDetails = async (req, res) => {
         }
         const data_response = await axios.get('https://real-time-product-search.p.rapidapi.com/search', {
             params: {
-                keyword: product_name,
+                q: product_name,
                 country: 'IN',
-                page: page || 1,
-                min_price: min_price,
-                max_price: max_price,
+                // page: page || 1,
+                // min_price: min_price,
+                // max_price: max_price,
                 language: 'en'
             }
             ,
