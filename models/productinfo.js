@@ -2,26 +2,26 @@ const mongoose  = require('mongoose');
 const productSchema = new mongoose.Schema({
     product_id: {
         type: String,
-        required: true,
+       
     },
     productname: {
         type: String,
-        required: true,
+        
         
     },
     store_name: {
         type: String,
-        required: true,
+       
     },
     store_rating: {
         type: String,
-        required: true,
+      
     },
 
     
     offerpageurl: {
         type: String,
-        required: true,
+        
     },
     store_review_count: {
         type: String,
@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
     },
     price: {
         type: String,
-        required: true,
+        
     },
     shipping: {
         type: String,

@@ -1,58 +1,98 @@
-// const users = require('../models/users');
+const productinfo = require('../models/productinfo');
 const users = require('../models/user.js');
-const errors ={
-    product_name: 'Product name is required.',
-}
+const errors = {
+  product_name: 'Product name is required.',
+};
 const axios = require('axios');
-const EnterDetails = async (req, res) => {
-    try{
-        const userid = req.userId;
-        console.log(userid);
-       //finduser id
-       const finduser = await users.findOne({ _id: userid });
-         if (!finduser) {
-                return res.status(400).json({ message: 'User does not exist.' });
-            }
 
+const fetchProductData = (product_name) => {
+ 
+  const axiosConfig = {
+    params: {
+      q: product_name,
+      country: 'IN',
+      language: 'en',
+    },
+    headers: {
+      'x-rapidapi-key': process.env.API_KEY,
+      'x-rapidapi-host': 'real-time-product-search.p.rapidapi.com',
+    },
+  };
 
-
-        const {product_name,page,min_price,max_price} = req.body;
-        
-        
-        if(!product_name){
-            throw errors.product_name;
-        }
-        const data_response = await axios.get('https://real-time-product-search.p.rapidapi.com/search', {
-            params: {
-                q: product_name,
-                country: 'IN',
-                // page: page || 1,
-                // min_price: min_price,
-                // max_price: max_price,
-                language: 'en'
-            }
-            ,
-                headers: {
-                    'x-rapidapi-key': process.env.API_KEY,
-                    'x-rapidapi-host': 'real-time-product-search.p.rapidapi.com'
-
-            }
-        })
-        if(!data_response){
-            throw data_response.data.message;
-        }
-        console.log(data_response.data)
-
-               
-        res.status(200).json({message:'success',data:data_response.data});
-
-
-
-    }
-    catch(err){
-        console.log(err);
-        res.status(400).json({message:err[errors] || 'An error occured.'});
-    }
-
+  return axios.get('https://real-time-product-search.p.rapidapi.com/search', axiosConfig)
+    .then(response => response.data);
 }
+
+const EnterDetails = (req, res) => {
+try{
+  const userid = req.userId;
+  console.log(userid);
+
+  // Find user id
+  users.findOne({ _id: userid })
+    .then(finduser => {
+      if (!finduser) {
+        return res.status(400).json({ message: 'User does not exist.' });
+      }
+
+      const product_name = req.body.product_name;
+
+      if (!product_name) {
+        throw new Error(errors.product_name);
+      }
+
+      // Fetch product data from the API
+      return fetchProductData(product_name);
+    })
+    .then(data_response => {
+      console.log(data_response.data);
+      const products = data_response.data;
+      const allOffers = [];
+        products.forEach(product => {
+            allOffers.push({
+                product_id: product.product_id,
+                userid: userid,
+               
+                product_name: product.product_title,
+                        store_name: product.offer.store_name,
+                        store_rating: product.offer.store_rating,
+                        offerpageurl: product.offer.offerpageurl,
+                        store_review_count: product.offer.store_review_count,
+                        store_reviews_page_url: product.offer.store_reviews_page_url,
+                        price: product.offer.price,
+                        shipping: product.offer.shipping,
+                        on_sale: product.offer.on_sale,
+                        original_price: product.offer.original_price,
+                        product_condition: product.offer.product_condition,
+
+            });
+        });
+
+
+       
+
+       
+    //now save the data in database
+    const savedata= productinfo.insertMany(allOffers);
+    if(!savedata){
+        throw new Error('Data not saved.');
+    }
+    res.status(200).json({ message: 'success', data: savedata });
+   
+    
+
+    
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json({ message: err.message || 'An error occurred.' });
+    });
+}
+
+catch(err){
+    console.log(err);
+    res.status(500).json({message:err[errors] || 'An error occured.'});
+}
+}
+
 module.exports = EnterDetails;
