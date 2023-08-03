@@ -20,5 +20,5 @@
         }
     })
     module.exports = mongoose.model('User', userSchema);
-// Path: routes\products.js
+
 
