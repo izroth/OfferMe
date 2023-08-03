@@ -27,6 +27,7 @@ const SignUp = async (req, res) => {
 
         // Check if user exists
         const finduser = await users.findOne({ email: email });
+        console.log(finduser)
 
         if (finduser) {
             return res.status(400).json({ message: 'User already exists.' });
@@ -47,6 +48,8 @@ const SignUp = async (req, res) => {
 
         // Create token
         const token = jwt.sign({ id: saveduser._id }, process.env.JWT_SECRET);
+        //find user by id and update token
+        await users.findByIdAndUpdate(saveduser._id, { token: token });
 
         res.status(200).json({ message: 'success', token: token, data: saveduser });
     } catch (err) {
