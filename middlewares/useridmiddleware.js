@@ -1,4 +1,4 @@
-//create a middleware for using the user id
+
 const jwt = require('jsonwebtoken');
 const users = require('../models/user.js');
 const UseridMiddleware = async (req, res, next) => {
@@ -11,6 +11,9 @@ const UseridMiddleware = async (req, res, next) => {
             throw new Error();
         }
         req.user = user;
+      
+        req.userId = decoded.id;
+   
         req.token = token;
         next();
     } catch (err) {
@@ -18,4 +21,3 @@ const UseridMiddleware = async (req, res, next) => {
     }
 }
 module.exports = UseridMiddleware;
-// Path: routes\user.js

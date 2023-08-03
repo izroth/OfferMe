@@ -1,30 +1,55 @@
 const mongoose  = require('mongoose');
 const productSchema = new mongoose.Schema({
+    product_id: {
+        type: String,
+        required: true,
+    },
     productname: {
         type: String,
         required: true,
         
     },
-    productid: {
+    store_name: {
         type: String,
         required: true,
-        unique:true
     },
-    producttitle: {
+    store_rating: {
         type: String,
-        required: true
+        required: true,
     },
-    productdescription: {
+
+    
+    offerpageurl: {
         type: String,
-        required: true
+        required: true,
     },
-    productphotos: {
+    store_review_count: {
         type: String,
-        required: true
+        
     },
-    productratings: {
+    store_reviews_page_url: {
         type: String,
-        required: true
+       
+    },
+    price: {
+        type: String,
+        required: true,
+    },
+    shipping: {
+        type: String,
+     
+    },
+    on_sale: {
+        type: String,
+    
+    },
+    original_price: {
+        type: String,
+        
+    },
+    product_condition: {
+        type: String,
+        required: true,
     },
     userid: {
         type: String,

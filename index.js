@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-require('./middlewares/useridmiddleware.js')
+const authentication =require('./middlewares/useridmiddleware.js')
 //create a middleware for cors
 const corsOptions = {
     origin: 'http://localhost:4200',
@@ -22,7 +22,7 @@ const users = require('./routes/user.js');
 
 //use the routes
 
-app.use('/products', products);
+app.use('/products',[authentication], products);
 app.use('/users', users);
 
 

@@ -1,9 +1,21 @@
+// const users = require('../models/users');
+const users = require('../models/user.js');
 const errors ={
     product_name: 'Product name is required.',
 }
 const axios = require('axios');
 const EnterDetails = async (req, res) => {
     try{
+        const userid = req.userId;
+        console.log(userid);
+       //finduser id
+       const finduser = await users.findOne({ _id: userid });
+         if (!finduser) {
+                return res.status(400).json({ message: 'User does not exist.' });
+            }
+
+
+
         const {product_name,page,min_price,max_price} = req.body;
         
         

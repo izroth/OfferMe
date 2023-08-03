@@ -14,10 +14,10 @@ const Login = async (req, res) => {
         const password = req.body.password;
         const validationErrors = [];
         if (!email) {
-            validationErrors.push(errors.email);
+            throw errors.email;
         }
         if (!password) {
-            validationErrors.push(errors.password);
+            throw errors.password;
         }
         if (password.length < 6) {
             validationErrors.push('Password must be at least 6 characters long.');
