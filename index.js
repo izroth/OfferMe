@@ -24,6 +24,7 @@ const users = require('./routes/user.js');
 app.use('/products', products);
 app.use('/users', users);
 
+
 //if server is running, print this message
 app.listen(port, () => console.log(`Offer me listening on port ${port}!`));
 app.get('/', (req, res) => res.send('Hello World!'));
