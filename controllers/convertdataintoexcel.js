@@ -58,11 +58,10 @@ const convertdataintoexcel = async (req, res) => {
       'product_condition',
     ];
 
-   // Now create the csv file using json2csv with the headers and the product info data with there respective headers
     const csv = json2csv(findproductinfo, { fields: headers });
-    // Now write the csv file to the server
+   
     await fs.writeFile('productinfo.csv', csv);
-    // Now send the csv file to the client
+   
     res.download('productinfo.csv');
 
 
