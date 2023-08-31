@@ -6,14 +6,14 @@ const errors = {
 
 const findproducts = async (req, res) => {
     try {
-        const filter = req.body.filter || req.query.filter;
+        const filter = req.body.filter || req.query.search;
         if (!filter) {
             throw new Error('nofilter');
         }
 
         const matchingResults = [];
 
-        const allProductInfo = await productinfo.find();
+        const allProductInfo = await productinfo.find().limit(100);
 
         
         allProductInfo.forEach(product => {
@@ -29,6 +29,7 @@ const findproducts = async (req, res) => {
         if (matchingResults.length === 0) {
             res.status(404).json({ message: 'No matching results found.' });
         }
+
 
         res.status(200).json({ results: matchingResults });
     } catch (error) {

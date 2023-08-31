@@ -25,6 +25,7 @@ const search = require('./routes/search.js');
 
 app.use('/products',[authentication], products);
 app.use('/users', users);
+app.use('/search', search);
 
 
 //if server is running, print this message
