@@ -4,6 +4,6 @@ const router = express.Router();
 
 const findproducts = require('../controllers/findproducts.js');
 
-router.post('/findproducts', findproducts);
+router.get('/findproducts', findproducts);
 
 module.exports = router;
