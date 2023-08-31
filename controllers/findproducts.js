@@ -6,7 +6,7 @@ const errors = {
 
 const findproducts = async (req, res) => {
     try {
-        const filter = req.query.filter;
+        const filter = req.body.filter || req.query;
         if (!filter) {
             throw new Error('nofilter');
         }
