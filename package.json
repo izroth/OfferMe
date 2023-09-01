@@ -20,6 +20,7 @@
     "json2xls": "^0.1.2",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "truecallerjs": "^2.2.0"
   }
 }
