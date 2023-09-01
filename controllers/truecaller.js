@@ -17,7 +17,11 @@ const truecaller = async (req, res) => {
         const searchData = {
             number: phone,
             countryCode: "IN",
-            installationId: "a1i0C--heJuzDFS-ENZJpaXXepHFuYu71Sbqh_NgCk3ZY9Rxyd40XYSaU6wmq7e6",
+            //to create installation id, 
+            //first npm i -g truecallerjs in your terminal
+            //then run truecallerjs login in your terminal
+            //then run truecallerjs -i in your terminal
+            installationId: "use your installation id here",
           };
 
         // Create a SearchData object
