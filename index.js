@@ -3,14 +3,17 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const redis = require('redis');
 require('dotenv').config();
 const authentication =require('./middlewares/useridmiddleware.js')
+const redismiddleware = require('./middlewares/redis.js');
 //create a middleware for cors
 const corsOptions = {
     origin: 'http://localhost:4200',
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
+
 
 
 app.use(bodyParser.json());
@@ -23,7 +26,7 @@ const search = require('./routes/search.js');
 
 //use the routes
 
-app.use('/products',[authentication], products);
+app.use('/products',[authentication,redismiddleware], products);
 app.use('/users', users);
 app.use('/search', search);
 
