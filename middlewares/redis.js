@@ -16,9 +16,12 @@ const redismiddleware = async(req, res, next) => {
             } else {
                 next();
             }
+            
         });
     } catch (err) {
         res.status(500).send({ message: err.message || 'An error occurred.' });
     }
 }
 module.exports = redismiddleware;
+
+
