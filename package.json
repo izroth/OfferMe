@@ -26,7 +26,6 @@
     "npm": "^10.0.0",
     "pdf-parse": "^1.1.1",
     "pdf-to-text": "^0.0.7",
-    "pdf2json": "^3.0.4",
     "redis": "^4.6.8",
     "truecallerjs": "^2.2.0"
   }
