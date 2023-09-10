@@ -10,6 +10,7 @@ const redismiddleware = require('./middlewares/redis.js');
 
 const corsOptions = {
     origin: 'http://localhost:4200',
+     origin: 'https://offerme.onrender.com/',
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
