@@ -18,7 +18,7 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
-const port = 3000;
+const port = 3000 ||env.process.PORT;
  require('./Db/db.js');
 const products = require('./routes/products.js');
 const users = require('./routes/user.js');
