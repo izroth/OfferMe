@@ -4,7 +4,9 @@
   "description": "it is backend service that will help in sereaching the product",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  
+     "start": "npm index.js",
+     "build": "npm install"
   },
   "author": "izroth",
   "license": "ISC",
