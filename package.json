@@ -29,9 +29,5 @@
     "pdf-to-text": "^0.0.7",
     "redis": "^4.6.8",
     "truecallerjs": "^2.2.0"
-  },
-  "engines": {
-    "node": ">=18.16.1"
   }
-  
 }
