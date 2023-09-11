@@ -1,7 +1,4 @@
 
-const requestip = require('request-ip');
-const CryptoJS = require('crypto-js');
-
 const CheckValidApiSource = async(req, res, next) => {
 
     try {
@@ -17,10 +14,8 @@ const CheckValidApiSource = async(req, res, next) => {
         if (req.headers['x-app-type'] !== 'OffermeRequest') {
             throw new Error('Invalid App Type');
         }
-        // check if request id header not present
-        if (!req.headers['x-request-id']) {
-            throw new Error('request id not present');
-        }
+    
+    
         // check if hashed id header not present
         if (!req.headers['x-hashed-id']) {
             throw new Error('hashed id not present');
