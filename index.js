@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const redis = require('redis');
 require('dotenv').config();
+const validapirequest = require('./middlewares/validapirequest.js');
 const authentication =require('./middlewares/useridmiddleware.js')
 const redismiddleware = require('./middlewares/redis.js');
 //allow http 
@@ -29,7 +30,7 @@ const search = require('./routes/search.js');
 
 
 
-app.use('/products',[authentication,redismiddleware], products);
+app.use('/products',[authentication,redismiddleware,validapirequest], products);
 app.use('/users', users);
 app.use('/search', search);
 
