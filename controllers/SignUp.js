@@ -7,23 +7,21 @@ const errors = {
 };
 
 const SignUp = async (req, res) => {
+    
+    
     try {
         const { email, password } = req.body;
         const validationErrors = [];
 
-        if (!email) {
+        console.log(email, password);
+
+        if (email.legth < 0) {
             validationErrors.push(errors.email);
         }
-        if (!password) {
+        if (!password.legth < 0) {
             validationErrors.push(errors.password);
         }
-        if (password.length < 6) {
-            validationErrors.push('Password must be at least 6 characters long.');
-        }
-
-        if (validationErrors.length > 0) {
-            return res.status(400).json({ errors: validationErrors });
-        }
+      
 
         // Check if user exists
         const finduser = await users.findOne({ email: email });
