@@ -10,7 +10,6 @@ const authentication =require('./middlewares/useridmiddleware.js')
 const redismiddleware = require('./middlewares/redis.js');
 //allow http 
 require('http').globalAgent.options.rejectUnauthorized = false
-
 const corsOptions = {
     origin: 'http://localhost:4200',
      origin: 'https://offerme.onrender.com/',
