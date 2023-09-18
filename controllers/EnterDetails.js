@@ -6,7 +6,7 @@ const errors = {
 const axios = require('axios');
 
 const fetchProductData = (product_name) => {
- 
+
   const axiosConfig = {
     params: {
       q: product_name,
