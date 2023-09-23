@@ -12,5 +12,4 @@ mongoose.connect(
 }).catch((e) => {
     console.log("An error occured. Error: ",e)
 })
-
 console.log(process.env.DATABASE_URL)
